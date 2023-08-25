@@ -33,7 +33,7 @@ export default function AddTask() {
 
   return (
     <>
-      <Button variant="outlined" onClick={() => setOpen(true)}>
+      <Button variant="outlined" onClick={() => setOpen(true)} sx={{ my: 2 }}>
         Добавить задачу
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>

@@ -14,10 +14,17 @@ class Todo {
     this.search = value;
   }
 
+  setSortBy(value) {
+    this.sortBy = value;
+  }
+
   async loadTasks() {
     let query = '';
     if (this.search) {
       query += `search=${this.search}&`;
+    }
+    if (this.sortBy) {
+      query += `sortBy=${this.sortBy}&`;
     }
     const res = await fetch(`${TASKS_URL}?${query}`, {
       method: 'GET',
