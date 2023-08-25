@@ -1,12 +1,19 @@
 import React from 'react';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import IconButton from '@mui/material/IconButton';
+import {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
+  Checkbox,
+} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Checkbox from '@mui/material/Checkbox';
+import todo from '@/store/todo';
 
-export default function TaskItem({ task, onDelete, onToggle }) {
+export default function TaskItem({ task, onToggle }) {
+  const onDelete = async () => {
+    await todo.deleteTask(task._id);
+    todo.loadTasks();
+  };
   return (
     <ListItem>
       <ListItemIcon>
