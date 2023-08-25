@@ -1,15 +1,27 @@
 'use client';
 
 import { Modal, Button, TextField, Box } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import todo from '@/store/todo';
 
 export default function AddTask() {
   const [open, setOpen] = useState(false);
   const [taskName, setTaskName] = useState('');
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState('');
+
+  useEffect(() => {
+    setError(false);
+    setHelperText('');
+  }, [taskName]);
 
   const handleSubmit = async () => {
     try {
+      if (!taskName) {
+        setError(true);
+        setHelperText('Заполните название');
+        return;
+      }
       await todo.addTask(taskName);
       setOpen(false);
       setTaskName('');
@@ -44,6 +56,8 @@ export default function AddTask() {
         >
           <h2>Добавить задачу</h2>
           <TextField
+            error={error}
+            helperText={helperText}
             label="Название"
             value={taskName}
             onChange={(e) => setTaskName(e.target.value)}
