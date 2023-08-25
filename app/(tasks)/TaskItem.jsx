@@ -9,7 +9,10 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import todo from '@/store/todo';
 
-export default function TaskItem({ task, onToggle }) {
+export default function TaskItem({ task }) {
+  const toggleFinished = async () => {
+    await todo.updateTask({ id: task._id, isFinished: !task.isFinished });
+  };
   const onDelete = async () => {
     await todo.deleteTask(task._id);
     todo.loadTasks();
@@ -22,7 +25,7 @@ export default function TaskItem({ task, onToggle }) {
           checked={task.isFinished}
           tabIndex={-1}
           disableRipple
-          onChange={() => onToggle(task._id)}
+          onChange={() => toggleFinished()}
         />
       </ListItemIcon>
       <ListItemText primary={task.title} />

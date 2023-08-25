@@ -11,25 +11,11 @@ function TasksList() {
     todo.loadTasks();
   }, []);
 
-  const onDelete = () => {
-    console.log('delete');
-  };
-  const onToggle = () => {
-    console.log('toggle');
-  };
-
   return (
     <main>
       <List>
         {todo.tasks.length &&
-          todo.tasks.map((task) => (
-            <TaskItem
-              key={task._id}
-              task={task}
-              onDelete={onDelete}
-              onToggle={onToggle}
-            />
-          ))}
+          todo.tasks.map((task) => <TaskItem key={task._id} task={task} />)}
       </List>
     </main>
   );

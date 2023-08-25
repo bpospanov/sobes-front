@@ -15,7 +15,7 @@ export default function Navbar({ onLogout }) {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Tasks
+          Todo
         </Typography>
 
         <IconButton color="inherit" aria-label="Logout" onClick={logOut}>
